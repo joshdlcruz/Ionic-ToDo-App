@@ -8,24 +8,43 @@
 
 <ion-content>
   <div class="ion-padding">
-    <ion-item>
+      <ion-grid>
+    <ion-row>
+        <ion-col>
       <ion-label position="fixed">Add new Task</ion-label>
-      <input type="text" placeholder="Task..." [(ngModel)]="newTodo.task" />
+    </ion-col>
+    </ion-row>
+    
+    <ion-row>
+      <ion-col>
+      <input type="text" size="text" placeholder="Task..." [(ngModel)]="newTodo.task" />
+    </ion-col>
+    <ion-col>
       <ion-button (click)="addTask(newTodo)">
         Add
       </ion-button>
-    </ion-item>
+    </ion-col>
+    </ion-row>
 
     <ion-list>
       <ion-item *ngFor="let todo of todos | async">
+          <ion-row>
+            <ion-col>
         <input type="text" [(ngModel)]="todo.task" />
+      </ion-col>
+        <ion-col>
         <ion-button item-left (click)="updateTask(todo.key, todo.task)">
             Update
           </ion-button>
+        </ion-col>
+          <ion-col>
         <ion-button item-left (click)="deleteTask(todo.key)">
           Delete
         </ion-button>
+      </ion-col>
+        </ion-row>
       </ion-item>
     </ion-list>
+    </ion-grid>
   </div>
 </ion-content>
