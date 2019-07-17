@@ -30,4 +30,7 @@ export class HomePage {
     // empty the input
     this.newTodo = { task: '' };
   }
+  deleteTask(todoKey) {
+    this.todosRef.remove(todoKey);
+  }
 }
