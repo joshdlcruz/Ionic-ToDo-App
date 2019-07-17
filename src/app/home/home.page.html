@@ -17,12 +17,15 @@
     </ion-item>
 
     <ion-list>
-        <ion-item *ngFor="let todo of todos | async">
-          <input type="text" [(ngModel)]="todo.task">
-          <ion-button item-left (click)="deleteTask(todo.key)">
-              Delete
+      <ion-item *ngFor="let todo of todos | async">
+        <input type="text" [(ngModel)]="todo.task" />
+        <ion-button item-left (click)="updateTask(todo.key, todo.task)">
+            Update
           </ion-button>
-        </ion-item>
-      </ion-list>
+        <ion-button item-left (click)="deleteTask(todo.key)">
+          Delete
+        </ion-button>
+      </ion-item>
+    </ion-list>
   </div>
 </ion-content>

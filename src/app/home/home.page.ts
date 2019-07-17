@@ -33,4 +33,7 @@ export class HomePage {
   deleteTask(todoKey) {
     this.todosRef.remove(todoKey);
   }
+  updateTask(key, task) {
+    this.todosRef.update(key, {task: task});
+  }
 }
