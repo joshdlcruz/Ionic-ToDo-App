@@ -8,43 +8,45 @@
 
 <ion-content>
   <div class="ion-padding">
-      <ion-grid>
-    <ion-row>
+    <ion-grid>
+      <ion-row>
         <ion-col>
-      <ion-label position="fixed">Add new Task</ion-label>
-    </ion-col>
-    </ion-row>
-    
-    <ion-row>
-      <ion-col>
-      <input type="text" size="text" placeholder="Task..." [(ngModel)]="newTodo.task" />
-    </ion-col>
-    <ion-col>
-      <ion-button (click)="addTask(newTodo)">
-        Add
-      </ion-button>
-    </ion-col>
-    </ion-row>
-
-    <ion-list>
-      <ion-item *ngFor="let todo of todos | async">
-          <ion-row>
-            <ion-col>
-        <input type="text" [(ngModel)]="todo.task" />
-      </ion-col>
-        <ion-col>
-        <ion-button item-left (click)="updateTask(todo.key, todo.task)">
-            Update
-          </ion-button>
+          <label position="fixed">Add new Task</label>
         </ion-col>
-          <ion-col>
-        <ion-button item-left (click)="deleteTask(todo.key)">
-          Delete
-        </ion-button>
-      </ion-col>
-        </ion-row>
-      </ion-item>
-    </ion-list>
+      </ion-row>
+
+      <ion-row>
+          <input class="taskInput" type="text" placeholder="Task..." [(ngModel)]="newTodo.task" />
+          <button class="addBtn" (click)="addTask(newTodo)">
+            Add
+          </button>
+      </ion-row>
+
+      <ion-list>
+        <ion-item *ngFor="let todo of todos | async">
+          <ion-row>
+              <ion-col>
+                  <ion-checkbox [(ngModel)]="todo.isChecked" (click)="toggleTask(todo.key, todo.isChecked)"></ion-checkbox>
+              </ion-col>
+            <ion-col>
+              <input class="taskItem" type="text" [(ngModel)]="todo.task" />
+            </ion-col>
+            <ion-col>
+              <ion-button
+                item-left
+                (click)="updateTask(todo.key, todo.task)"
+              >
+              <ion-icon name="create"></ion-icon>
+              </ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button color="danger" item-left (click)="deleteTask(todo.key)">
+                  <ion-icon name="trash"></ion-icon>
+              </ion-button>
+            </ion-col>
+          </ion-row>
+        </ion-item>
+      </ion-list>
     </ion-grid>
   </div>
 </ion-content>

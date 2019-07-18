@@ -12,7 +12,7 @@ export class HomePage {
   todosRef: AngularFireList<any>;
   todos: Observable<any[]>;
   // input value
-  newTodo = { task: '' };
+  newTodo = { task: '', isChecked: false };
 
   constructor(public db: AngularFireDatabase) {
     this.todosRef = db.list('/todo');
@@ -28,12 +28,20 @@ export class HomePage {
   addTask(newTodo) {
     this.todosRef.push(newTodo);
     // empty the input
-    this.newTodo = { task: '' };
+    this.newTodo = { task: '', isChecked: false };
   }
   deleteTask(todoKey) {
     this.todosRef.remove(todoKey);
   }
   updateTask(key, task) {
     this.todosRef.update(key, {task: task});
+  }
+  toggleTask(key, check){
+    if (check === false){
+      this.todosRef.update(key, {isChecked: true});
+    } else {
+      this.todosRef.update(key, {isChecked: false});
+    }
+
   }
 }
