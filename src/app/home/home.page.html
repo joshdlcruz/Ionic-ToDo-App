@@ -17,9 +17,9 @@
 
       <ion-row>
           <input class="taskInput" type="text" placeholder="Task..." [(ngModel)]="newTodo.task" (keyup.enter)="addTask(newTodo)"/>
-          <button class="addBtn" (click)="addTask(newTodo)">
+          <ion-button class="addBtn" (click)="addTask(newTodo)">
             Add
-          </button>
+          </ion-button>
       </ion-row>
     </ion-grid>
 
@@ -31,11 +31,11 @@
                   <ion-checkbox [(ngModel)]="todo.isChecked" (click)="toggleTask(todo.key, todo.isChecked)"></ion-checkbox>
               </ion-col>
             <ion-col size="7">
-              <textarea class="taskItem" type="text" [(ngModel)]="todo.task"></textarea>
+              <textarea class="taskItem" type="text" [(ngModel)]="todo.task" onkeypress="if(event.keyCode==13){return false;}"></textarea>
             </ion-col>
             <ion-col size="4">
               <ion-button (click)="updateTask(todo.key, todo.task)">
-              <ion-icon name="create"></ion-icon>
+              <ion-icon name="save"></ion-icon>
               </ion-button>
               <ion-button color="danger" (click)="deleteTask(todo.key)">
                   <ion-icon name="trash"></ion-icon>

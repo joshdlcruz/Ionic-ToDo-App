@@ -26,9 +26,11 @@ export class HomePage {
       );
   }
   addTask(newTodo) {
+    if(newTodo.task !== null && (newTodo.task).length > 0 ) {
     this.todosRef.push(newTodo);
     // empty the input
     this.newTodo = { task: '', isChecked: false };
+    }
   }
   deleteTask(todoKey) {
     this.todosRef.remove(todoKey);
