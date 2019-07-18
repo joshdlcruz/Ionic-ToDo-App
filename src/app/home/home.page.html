@@ -16,31 +16,28 @@
       </ion-row>
 
       <ion-row>
-          <input class="taskInput" type="text" placeholder="Task..." [(ngModel)]="newTodo.task" />
+          <input class="taskInput" type="text" placeholder="Task..." [(ngModel)]="newTodo.task" (keyup.enter)="addTask(newTodo)"/>
           <button class="addBtn" (click)="addTask(newTodo)">
             Add
           </button>
       </ion-row>
+    </ion-grid>
 
+    <ion-grid>
       <ion-list>
         <ion-item *ngFor="let todo of todos | async">
           <ion-row>
-              <ion-col>
+              <ion-col size="1">
                   <ion-checkbox [(ngModel)]="todo.isChecked" (click)="toggleTask(todo.key, todo.isChecked)"></ion-checkbox>
               </ion-col>
-            <ion-col>
-              <input class="taskItem" type="text" [(ngModel)]="todo.task" />
+            <ion-col size="7">
+              <textarea class="taskItem" type="text" [(ngModel)]="todo.task"></textarea>
             </ion-col>
-            <ion-col>
-              <ion-button
-                item-left
-                (click)="updateTask(todo.key, todo.task)"
-              >
+            <ion-col size="4">
+              <ion-button (click)="updateTask(todo.key, todo.task)">
               <ion-icon name="create"></ion-icon>
               </ion-button>
-            </ion-col>
-            <ion-col>
-              <ion-button color="danger" item-left (click)="deleteTask(todo.key)">
+              <ion-button color="danger" (click)="deleteTask(todo.key)">
                   <ion-icon name="trash"></ion-icon>
               </ion-button>
             </ion-col>

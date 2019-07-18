@@ -34,14 +34,13 @@ export class HomePage {
     this.todosRef.remove(todoKey);
   }
   updateTask(key, task) {
-    this.todosRef.update(key, {task: task});
+    this.todosRef.update(key, { task });
   }
-  toggleTask(key, check){
-    if (check === false){
-      this.todosRef.update(key, {isChecked: true});
+  toggleTask(key, check) {
+    if (check === false) {
+      this.todosRef.update(key, { isChecked: true });
     } else {
-      this.todosRef.update(key, {isChecked: false});
+      this.todosRef.update(key, { isChecked: false });
     }
-
   }
 }
